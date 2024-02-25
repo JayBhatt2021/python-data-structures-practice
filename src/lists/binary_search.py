@@ -2,26 +2,27 @@ from typing import List
 import random
 
 
-def generate_random_list(lower, upper, length) -> List[int]:
-    """
+def generate_random_list(lower: int, upper: int, length: int) -> List[int]:
+    """Generates a random list of integers within a specified range.
 
-    :param lower:
-    :param upper:
-    :param length:
-    :return:
+    :param lower: The lower bound of the range.
+    :param upper: The upper bound of the range.
+    :param length: The length of the list to generate.
+    :return: A list of random integers.
     """
     return [random.randint(lower, upper) for _ in range(length)]
 
 
 def binary_search(num_list: List[int], key: int) -> int:
-    """
+    """Performs binary search to find the index of a key in a sorted list.
 
-    :param num_list:
-    :return:
+    :param num_list: The list of integers to search.
+    :param key: The key to search for.
+    :return: The index of the key if found, otherwise -1.
     """
     left, right = 0, len(num_list) - 1
 
-    while left < right:
+    while left <= right:
         middle = (left + right) // 2
 
         if num_list[middle] == key:
