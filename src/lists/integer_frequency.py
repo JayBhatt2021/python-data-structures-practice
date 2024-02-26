@@ -1,9 +1,9 @@
-from typing import Dict, List
 import random
+from typing import Dict, List
 
 
 def generate_random_list(lower: int, upper: int, length: int) -> List[int]:
-    """Generates a random list of integers within a specified range.
+    """Generate a random list of integers within a specified range.
 
     :param lower: The lower bound of the range.
     :param upper: The upper bound of the range.
@@ -14,11 +14,10 @@ def generate_random_list(lower: int, upper: int, length: int) -> List[int]:
 
 
 def generate_num_frequency_dict(num_list: List[int]) -> Dict[int, int]:
-    """Performs binary search to find the index of a key in a sorted list.
+    """Generate a dictionary containing the frequency of numbers in the list.
 
-    :param num_list: The list of integers to search.
-    :param key: The key to search for.
-    :return: The index of the key if found, otherwise -1.
+    :param num_list: The list of integers.
+    :return: A dictionary with integers as keys and their frequencies as values.
     """
     num_freq_dict = {}
 
@@ -29,11 +28,10 @@ def generate_num_frequency_dict(num_list: List[int]) -> Dict[int, int]:
 
 
 def print_dictionary(name: str, dictionary: Dict[int, int]) -> None:
-    """Performs binary search to find the index of a key in a sorted list.
+    """Print the contents of the dictionary in sorted order.
 
-    :param num_list: The list of integers to search.
-    :param key: The key to search for.
-    :return: The index of the key if found, otherwise -1.
+    :param name: The name of the dictionary.
+    :param dictionary: The dictionary to print.
     """
     print(name)
     for key, value in sorted(dictionary.items()):
