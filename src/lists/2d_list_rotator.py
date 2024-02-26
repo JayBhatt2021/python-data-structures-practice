@@ -2,7 +2,7 @@ from typing import List
 
 
 def print_matrix(matrix: List[List[int]]) -> None:
-    """Prints the matrix.
+    """Print the matrix.
 
     :param matrix: The matrix to print.
     """
@@ -11,7 +11,7 @@ def print_matrix(matrix: List[List[int]]) -> None:
 
 
 def rotate_90_degrees(matrix: List[List[int]]) -> None:
-    """Rotates the matrix 90 degrees clockwise in-place.
+    """Rotate the matrix 90 degrees clockwise in-place.
 
     :param matrix: The matrix to rotate.
     :raises ValueError: If the matrix is not square.

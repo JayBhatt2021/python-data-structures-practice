@@ -1,9 +1,9 @@
-from typing import List
 import random
+from typing import List
 
 
 def generate_random_list(lower: int, upper: int, length: int) -> List[int]:
-    """Generates a random list of integers within a specified range.
+    """Generate a random list of integers within a specified range.
 
     :param lower: The lower bound of the range.
     :param upper: The upper bound of the range.
@@ -14,7 +14,7 @@ def generate_random_list(lower: int, upper: int, length: int) -> List[int]:
 
 
 def binary_search(num_list: List[int], key: int) -> int:
-    """Performs binary search to find the index of a key in a sorted list.
+    """Perform binary search to find the index of a key in a sorted list.
 
     :param num_list: The list of integers to search.
     :param key: The key to search for.
