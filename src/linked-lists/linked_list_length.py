@@ -53,7 +53,10 @@ class LinkedList:
         current.next = new_node
 
     def get_length(self) -> int:
-        """Reverse the linked list in-place."""
+        """Get the length of the linked list.
+
+        :return: The length of the linked list.
+        """
         current, length = self.head, 0
         while current:
             length += 1
