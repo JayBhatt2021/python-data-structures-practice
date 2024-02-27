@@ -3,40 +3,43 @@ from typing import List
 
 
 class MinimumStack:
-    """Linked list implementation."""
+    """Stack implementation supporting minimum value retrieval."""
 
     def __init__(self) -> None:
-        """Initialize an empty linked list."""
-        self.stack: List[int] = []
-        self.minimum_stack: List[int] = []
+        """Initialize an instance of MinimumStack."""
+        self.stack = []
+        self.minimum_stack = []
 
     def push(self, num: int) -> None:
-        """
+        """Push a number onto the stack.
 
-        :param num:
-        :return:
+        :param num: The number to push onto the stack.
         """
         self.stack.append(num)
 
-        # Calculate the minimum between num and the current minimum value (if
-        # self.minimum_stack is not empty)
-        num = min(num, self.min() if self.minimum_stack else num)
+        # Calculate the minimum between num and the current minimum number
+        # (if self.minimum_stack is not empty)
+        minimum = min(num, self.min() if self.minimum_stack else num)
 
-        self.minimum_stack.append(num)
+        self.minimum_stack.append(minimum)
 
     def pop(self) -> int:
-        """
+        """Pop the top element from the stack and return it.
 
-        :return:
+        :return: The popped element.
+        :raises IndexError: If the stack is empty.
         """
+        if not self.stack:
+            raise IndexError("The stack is empty!")
+
         self.minimum_stack.pop()
         return self.stack.pop()
 
     def peek(self) -> int:
-        """
+        """Return the top element of the stack without removing it.
 
-        :return:
-        :raises IndexError:
+        :return: The top element of the stack.
+        :raises IndexError: If the stack is empty.
         """
         if not self.stack:
             raise IndexError("The stack is empty!")
@@ -44,13 +47,13 @@ class MinimumStack:
         return self.stack[-1]
 
     def min(self) -> int:
-        """
+        """Return the minimum element in the stack.
 
-        :return:
-        :raises IndexError:
+        :return: The minimum element in the stack.
+        :raises IndexError: If the stack is empty.
         """
         if not self.minimum_stack:
-            raise IndexError("The minimum stack is empty!")
+            raise IndexError("The stack is empty!")
 
         return self.minimum_stack[-1]
 
@@ -74,12 +77,14 @@ def main() -> None:
 
     for num in random_nums:
         minimum_stack.push(num)
+
     print("Before Popping Half of the Stack")
     print(f"Top Value of the Stack: {minimum_stack.peek()}")
     print(f"Minimum Value of the Stack: {minimum_stack.min()}")
 
     for _ in range(total_nums // 2):
         minimum_stack.pop()
+
     print("\nAfter Popping Half of the Stack")
     print(f"Top Value of the Stack: {minimum_stack.peek()}")
     print(f"Minimum Value of the Stack: {minimum_stack.min()}")
