@@ -3,33 +3,22 @@ from typing import List
 
 
 class Queue:
-    """A stack implementation of a queue."""
+    """A queue implemented using two stacks."""
 
     def __init__(self) -> None:
-        """Initialize an instance of Queue."""
+        """Initialize an empty queue."""
         self.enqueue_stack = []
         self.dequeue_stack = []
 
-    def __str__(self) -> str:
-        """Return a string representation of the queue.
-
-        :return: String representation of the queue.
-        """
-        if self.is_empty():
-            return "The queue is empty!"
-        else:
-            queue_str = ', '.join(map(str, self.enqueue_stack))
-            return f"Front -> {queue_str} <- Back"
-
     def enqueue(self, num: int) -> None:
-        """Enqueue a number into the queue.
+        """Add an element to the back of the queue.
 
-        :param num: The number to enqueue into the queue.
+        :param num: The element to enqueue.
         """
         self.enqueue_stack.append(num)
 
     def dequeue(self) -> int:
-        """Dequeue the front element from the queue and return it.
+        """Remove and return the front element of the queue.
 
         :return: The dequeued element.
         :raises IndexError: If the queue is empty.
@@ -37,18 +26,11 @@ class Queue:
         if self.is_empty():
             raise IndexError("The queue is empty!")
 
-        # Move all elements from enqueue_stack to dequeue_stack
-        while self.enqueue_stack:
-            self.dequeue_stack.append(self.enqueue_stack.pop())
+        # Transfer all elements from enqueue_stack to dequeue_stack if
+        # deque_stack is empty
+        self._transfer_elements()
 
-        # The top element of dequeue_stack represents the front of the queue.
-        dequeued_element = self.dequeue_stack.pop()
-
-        # Move the rest of the elements back to the enqueue_stack
-        while self.dequeue_stack:
-            self.enqueue(self.dequeue_stack.pop())
-
-        return dequeued_element
+        return self.dequeue_stack.pop()
 
     def peek(self) -> int:
         """Return the front element of the queue without removing it.
@@ -59,18 +41,17 @@ class Queue:
         if self.is_empty():
             raise IndexError("The queue is empty!")
 
-        # Move all elements from enqueue_stack to dequeue_stack
-        while self.enqueue_stack:
-            self.dequeue_stack.append(self.enqueue_stack.pop())
+        # Transfer all elements from enqueue_stack to dequeue_stack if
+        # deque_stack is empty
+        self._transfer_elements()
 
-        # The top element of dequeue_stack represents the front of the queue.
-        front_element = self.dequeue_stack[-1]
+        return self.dequeue_stack[-1]
 
-        # Move all elements back to the enqueue_stack
-        while self.dequeue_stack:
-            self.enqueue(self.dequeue_stack.pop())
-
-        return front_element
+    def _transfer_elements(self) -> None:
+        """Transfer elements from enqueue_stack to dequeue_stack."""
+        if not self.dequeue_stack:
+            while self.enqueue_stack:
+                self.dequeue_stack.append(self.enqueue_stack.pop())
 
     def is_empty(self) -> bool:
         """Check if the queue is empty.
@@ -79,9 +60,8 @@ class Queue:
         """
         return not (self.enqueue_stack or self.dequeue_stack)
 
-    def display_queue(self) -> None:
-        """Display the queue."""
-        print(f"{self}")
+    def display_queue_info(self) -> None:
+        """Display information about the queue."""
         print(f"Is the queue empty? {'Yes' if self.is_empty() else 'No'}")
         if not self.is_empty():
             print(f"The front element of the queue is {self.peek()}.")
@@ -104,22 +84,22 @@ def main() -> None:
     queue = Queue()
 
     print("Before Enqueueing Elements in the Queue")
-    queue.display_queue()
+    queue.display_queue_info()
 
     for num in random_nums:
         queue.enqueue(num)
     print("\nAfter Enqueueing Elements in the Queue")
-    queue.display_queue()
+    queue.display_queue_info()
 
     dequeued_element = queue.dequeue()
     print("\nAfter Dequeueing the Front Element from the Queue")
-    queue.display_queue()
+    queue.display_queue_info()
     print(f"The element dequeued from the queue is {dequeued_element}.")
 
     while not queue.is_empty():
         queue.dequeue()
     print("\nAfter Dequeueing the Rest of the Elements from the Queue")
-    queue.display_queue()
+    queue.display_queue_info()
 
 
 if __name__ == "__main__":
