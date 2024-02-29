@@ -27,7 +27,6 @@ class BinaryTree:
     def __init__(self) -> None:
         """Initialize a binary tree."""
         self.root = None
-        self.nodes_visited = []
 
     def populate(self) -> None:
         """Populate the binary tree with sample data."""
@@ -35,69 +34,84 @@ class BinaryTree:
             Node(4, Node(2, Node(1), Node(3)), Node(6, Node(5), Node(7)))
         )
 
-    def clear_visited_nodes(self) -> None:
-        """Populate the binary tree with sample data."""
-        self.nodes_visited.clear()
-
-    def preorder(self, root: Node) -> List[int]:
+    def obtain_preorder_nodes(self) -> List[int]:
         """Calculate the height of the binary tree.
 
-        :param root: The root node of the binary tree.
         :return: The height of the binary tree.
         """
-        if not root:
-            return
+        nodes_visited = []
 
-        self.nodes_visited.append(root.data)
-        self.preorder(root.left)
-        self.preorder(root.right)
+        def preorder(root: Node) -> None:
+            """
 
-        return self.nodes_visited
+            :param root:
+            """
+            if not root:
+                return
 
-    def inorder(self, root: Node) -> List[int]:
+            nodes_visited.append(root.data)
+            preorder(root.left)
+            preorder(root.right)
+
+        preorder(self.root)
+
+        return nodes_visited
+
+    def obtain_inorder_nodes(self) -> List[int]:
         """Calculate the height of the binary tree.
 
-        :param root: The root node of the binary tree.
         :return: The height of the binary tree.
         """
-        if not root:
-            return
+        nodes_visited = []
 
-        self.inorder(root.left)
-        self.nodes_visited.append(root.data)
-        self.inorder(root.right)
+        def inorder(root: Node) -> None:
+            """
 
-        return self.nodes_visited
+            :param root:
+            """
+            if not root:
+                return
 
-    def postorder(self, root: Node) -> List[int]:
+            inorder(root.left)
+            nodes_visited.append(root.data)
+            inorder(root.right)
+
+        inorder(self.root)
+
+        return nodes_visited
+
+    def obtain_postorder_nodes(self) -> List[int]:
         """Calculate the height of the binary tree.
 
-        :param root: The root node of the binary tree.
         :return: The height of the binary tree.
         """
-        if not root:
-            return
+        nodes_visited = []
 
-        self.postorder(root.left)
-        self.postorder(root.right)
-        self.nodes_visited.append(root.data)
+        def postorder(root: Node) -> None:
+            """
 
-        return self.nodes_visited
+            :param root:
+            """
+            if not root:
+                return
+
+            postorder(root.left)
+            postorder(root.right)
+            nodes_visited.append(root.data)
+
+        postorder(self.root)
+
+        return nodes_visited
 
 
 def main() -> None:
     """Main function."""
     binary_tree = BinaryTree()
     binary_tree.populate()
-    root = binary_tree.root
 
-    print(f"Preorder Traversal: {binary_tree.preorder(root)}")
-    binary_tree.clear_visited_nodes()
-
-    print(f"Inorder Traversal: {binary_tree.inorder(root)}")
-    binary_tree.clear_visited_nodes()
-
-    print(f"Postorder Traversal: {binary_tree.postorder(root)}")
+    print(f"Preorder Traversal: {binary_tree.obtain_preorder_nodes()}")
+    print(f"Inorder Traversal: {binary_tree.obtain_inorder_nodes()}")
+    print(f"Postorder Traversal: {binary_tree.obtain_postorder_nodes()}")
 
 
 if __name__ == "__main__":
