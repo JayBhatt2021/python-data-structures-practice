@@ -28,7 +28,7 @@ def alternate_smallest_integers(integers: List[int]) -> List[int]:
         smallest = heapq.heappop(integers)
         second_smallest = heapq.heappop(integers)
 
-        # Append the second_smallest and smallest to smallest_integers
+        # Append second_smallest and smallest to smallest_integers, respectively
         smallest_integers.append(second_smallest)
         smallest_integers.append(smallest)
 
