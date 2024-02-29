@@ -51,7 +51,9 @@ def main() -> None:
     """Main function."""
     binary_tree = BinaryTree()
     binary_tree.populate()
-    print(f"Height of the Binary Tree: {binary_tree.height(binary_tree.root)}")
+
+    height = binary_tree.height(binary_tree.root)
+    print(f"Height of the Binary Tree: {height} node(s)")
 
 
 if __name__ == "__main__":
