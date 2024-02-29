@@ -23,29 +23,20 @@ def count_hungry_customers(
     :param customer_queue: List representing the queue of customers.
     :return: The number of customers who couldn't get a cookie.
     """
-    # One-to-one correspondence between cookie_stack and customer_queue will
-    # result in 0 hungry customers.
-    if cookie_stack == customer_queue:
-        return 0
+    # Create a set of all distinct POSSIBLE customers
+    all_customers = set(cookie_stack + customer_queue)
 
-    # Initialize the count of each type of customer to 0
-    # (It has to be taken from the set of the elements in cookie_stack PLUS
-    # customer_queue because set(cookie_stack) may not necessarily equal
-    # set(customer_queue). This is done to avoid a KeyError when accessing
-    # customer_frequency.)
-    customer_frequency = {c: 0 for c in set(cookie_stack + customer_queue)}
+    # Initialize a dictionary to store the count of each customer
+    customer_frequency = {c: 0 for c in all_customers}
 
-    # Obtain the count of each type of customer
-    for c in customer_queue:
-        customer_frequency[c] += 1
+    # Count the occurrences of each customer in the queue
+    for customer in customer_queue:
+        customer_frequency[customer] += 1
 
-    # Reduce the number of hungry customers based on the cookie that is on top
-    # of the stack
-    # (If there are no customers that can eat the cookie on the top of the
-    # stack, then the current customer onwards will go hungry.)
-    for c in cookie_stack:
-        if customer_frequency[c]:
-            customer_frequency[c] -= 1
+    # Reduce the count of customers based on the cookies available in the stack
+    for cookie in cookie_stack:
+        if customer_frequency.get(cookie, 0) > 0:
+            customer_frequency[cookie] -= 1
         else:
             break
 
