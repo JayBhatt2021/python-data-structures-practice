@@ -46,9 +46,11 @@ class BinaryTree:
 
             :param root: The root node of the subtree.
             """
+            # Base case: If the current node is "None", stop traversing further.
             if not root:
                 return
 
+            # Recursive step (preorder): Center, Left, Right
             nodes_visited.append(root.data)
             traverse(root.left)
             traverse(root.right)
@@ -69,9 +71,11 @@ class BinaryTree:
 
             :param root: The root node of the subtree.
             """
+            # Base case: If the current node is "None", stop traversing further.
             if not root:
                 return
 
+            # Recursive step (inorder): Left, Center, Right
             traverse(root.left)
             nodes_visited.append(root.data)
             traverse(root.right)
@@ -92,9 +96,11 @@ class BinaryTree:
 
             :param root: The root node of the subtree.
             """
+            # Base case: If the current node is "None", stop traversing further.
             if not root:
                 return
 
+            # Recursive step (postorder): Left, Right, Center
             traverse(root.left)
             traverse(root.right)
             nodes_visited.append(root.data)
