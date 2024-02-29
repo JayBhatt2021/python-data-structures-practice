@@ -29,18 +29,18 @@ class BinaryTree:
         """Populate the binary tree with sample data."""
         self.root = Node(1, Node(2, Node(3, right=Node(4)), Node(5)), Node(6))
 
-    def height(self, node: Node) -> int:
+    def height(self, root: Node) -> int:
         """Calculate the height of the binary tree.
 
-        :param node: The root node of the binary tree.
+        :param root: The root node of the binary tree.
         :return: The height of the binary tree.
         """
         # Base case: The height of a "None" node is 0.
-        if not node:
+        if not root:
             return 0
 
-        left_height = self.height(node.left)
-        right_height = self.height(node.right)
+        left_height = self.height(root.left)
+        right_height = self.height(root.right)
 
         # Recursive step: The height of the tree is 1 (the height of the current
         # node) plus the height of the tallest child.
