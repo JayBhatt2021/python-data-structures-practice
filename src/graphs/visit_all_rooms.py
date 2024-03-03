@@ -23,7 +23,7 @@ def able_to_visit_all_rooms(rooms: List[List[int]]) -> bool:
     # Initialize a set to keep track of visited rooms
     visited_rooms = set()
 
-    def dfs(room):
+    def dfs(room: int) -> None:
         """Perform Depth-First Search (DFS) traversal to explore rooms.
 
         :param room: The current room being visited.
