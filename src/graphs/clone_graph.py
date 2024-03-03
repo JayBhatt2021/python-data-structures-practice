@@ -16,7 +16,7 @@ class Node:
     def __str__(self) -> str:
         """Return a string representation of the node.
 
-        :return: A string representation of the node.
+        :return: A string representation of the node's value.
         """
         return str(self.value)
 
@@ -36,7 +36,7 @@ class Graph:
 
         :return: A string representation of the graph.
         """
-        return f"[{', '.join(map(str, self.nodes))}]"
+        return f"{[str(node) for node in self.nodes]}"
 
     def __eq__(self, other: object) -> bool:
         """Check if two graphs are equal.
@@ -127,8 +127,8 @@ def main() -> None:
 
     graph_equality_str = "Yes" if graph == cloned_graph else "No"
     print(
-        f"Does the original graph ({graph}) contain the same values as the "
-        f"cloned graph ({cloned_graph})? {graph_equality_str}"
+        f"Are the original graph ({graph}) and the cloned graph "
+        f"({cloned_graph}) equal? {graph_equality_str}"
     )
 
 
