@@ -29,5 +29,3 @@ $ cd queues
 ```bash
 $ python3 animal_queue.py
 ```
-
-3. Interact with the program as a user by following the prompts.
