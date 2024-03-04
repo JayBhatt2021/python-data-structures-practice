@@ -1,8 +1,8 @@
 # Python Data Structures Practice
 
-Welcome to the Python Data Structures Practice repository! Here, you'll find simple Python programs that showcase
-essential data structures such as heaps and linked lists. The file hierarchy of this repository has been organized for
-ease of navigation in the terminal.
+Welcome to the Python Data Structures Practice repository! This repository contains simple Python programs that
+demonstrate essential data structures such as heaps and linked lists. The file hierarchy has been organized for easy
+navigation in the terminal.
 
 ## Installation
 
@@ -15,10 +15,10 @@ $ cd python-data-structures-practice/src
 
 ## Usage
 
-To run the Python code in the `src` directory, follow these steps:
+Follow these steps to run the Python code in the `src` directory:
 
 1. Navigate to the specific directory containing the Python file you want to execute. For example, to explore
-   `queues`, use:
+   the `queues` directory, use:
 
 ```bash
 $ cd queues
@@ -30,4 +30,4 @@ $ cd queues
 $ python3 animal_queue.py
 ```
 
-3. Follow the prompts and interact with the program as a user.
+3. Interact with the program as a user by following the prompts.
